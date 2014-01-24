@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9096C701892162300E9FB6B /* thwHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9096C6F1892162300E9FB6B /* thwHistoryManager.m */; };
 		E9D849E41892134000DDE5FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D849E31892134000DDE5FE /* Foundation.framework */; };
 		E9D849E61892134000DDE5FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D849E51892134000DDE5FE /* CoreGraphics.framework */; };
 		E9D849E81892134000DDE5FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D849E71892134000DDE5FE /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E9096C6E1892162300E9FB6B /* thwHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwHistoryManager.h; sourceTree = "<group>"; };
+		E9096C6F1892162300E9FB6B /* thwHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwHistoryManager.m; sourceTree = "<group>"; };
 		E9D849E01892134000DDE5FE /* sabnzbd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sabnzbd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D849E31892134000DDE5FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9D849E51892134000DDE5FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,6 +85,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9096C6C189215D600E9FB6B /* sabnzbd */ = {
+			isa = PBXGroup;
+			children = (
+				E9096C6D189215DD00E9FB6B /* history */,
+			);
+			name = sabnzbd;
+			sourceTree = "<group>";
+		};
+		E9096C6D189215DD00E9FB6B /* history */ = {
+			isa = PBXGroup;
+			children = (
+				E9096C6E1892162300E9FB6B /* thwHistoryManager.h */,
+				E9096C6F1892162300E9FB6B /* thwHistoryManager.m */,
+			);
+			name = history;
+			sourceTree = "<group>";
+		};
 		E9D849D71892134000DDE5FE = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +135,7 @@
 		E9D849E91892134000DDE5FE /* sabnzbd */ = {
 			isa = PBXGroup;
 			children = (
+				E9096C6C189215D600E9FB6B /* sabnzbd */,
 				E9D849F21892134000DDE5FE /* thwAppDelegate.h */,
 				E9D849F31892134000DDE5FE /* thwAppDelegate.m */,
 				E9D849F51892134000DDE5FE /* Main.storyboard */,
@@ -258,6 +279,7 @@
 				E9D849F41892134000DDE5FE /* thwAppDelegate.m in Sources */,
 				E9D849F01892134000DDE5FE /* main.m in Sources */,
 				E9D849FD1892134100DDE5FE /* thwSecondViewController.m in Sources */,
+				E9096C701892162300E9FB6B /* thwHistoryManager.m in Sources */,
 				E9D849FA1892134100DDE5FE /* thwFirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +489,7 @@
 				E9D84A171892134100DDE5FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9D84A181892134100DDE5FE /* Build configuration list for PBXNativeTarget "sabnzbdTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +498,7 @@
 				E9D84A1A1892134100DDE5FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
