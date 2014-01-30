@@ -17,7 +17,6 @@
     NSArray *slotsArray = [historyDictionary objectForKey:@"slots"];
 
     for (NSDictionary *nzbDownload in slotsArray) {
-        NSLog(@"%@", [nzbDownload objectForKey:@"nzb_name"]);
         thwHistoryItem *newItem = [[thwHistoryItem alloc] init];
         [newItem setNzbName:[nzbDownload objectForKey:@"nzb_name"]];
         [array addObject:newItem];
