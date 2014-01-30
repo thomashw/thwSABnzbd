@@ -7,17 +7,12 @@
 //
 
 #import "thwAppDelegate.h"
-#import "thwHistoryManager.h"
 
 @implementation thwAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-
-    thwHistoryManager *manager = [[thwHistoryManager alloc] init];
-    [manager getHistory];
-
     return YES;
 }
 							
