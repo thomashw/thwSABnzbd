@@ -17,6 +17,7 @@
 @implementation thwHistoryTableViewController
 
 NSString *const HISTORY_API_MODE = @"history";
+NSInteger MAX_NUM_HISTORY_ITEMS = 50;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,7 +31,7 @@ NSString *const HISTORY_API_MODE = @"history";
 {
     [super viewDidLoad];
     [self setTitle:@"Download History"];
-    [self retrieveDataWithApiMode:HISTORY_API_MODE];
+    [self retrieveDataWithApiMode:HISTORY_API_MODE andMaximumNumberOfItems:MAX_NUM_HISTORY_ITEMS];
 }
 
 - (void)didReceiveMemoryWarning

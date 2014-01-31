@@ -9,9 +9,13 @@
 #import "thwHistoryDetailTableViewController.h"
 #import "thwHistoryItem.h"
 
+typedef enum HistoryDetailSection {
+    HistoryDetailSectionFirst = 0,
+    HistoryDetailSectionCount
+} HistoryDetailSection;
+
 typedef enum HistoryDetailRow {
-    HistoryDetailRowName = 0,
-    HistoryDetailRowSize,
+    HistoryDetailRowSize = 0,
     HistoryDetailRowStatus,
     HistoryDetailRowCount
 } HistoryDetailRow;
@@ -52,7 +56,7 @@ typedef enum HistoryDetailRow {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return HistoryDetailSectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,10 +70,6 @@ typedef enum HistoryDetailRow {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     switch (indexPath.row) {
-        case HistoryDetailRowName:
-            [cell.textLabel setText:@"Name"];
-            [cell.detailTextLabel setText:self.historyItem.name];
-            break;
         case HistoryDetailRowSize:
             [cell.textLabel setText:@"Size"];
             [cell.detailTextLabel setText:self.historyItem.size];
@@ -82,6 +82,21 @@ typedef enum HistoryDetailRow {
     }
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = @"";
+    
+    switch (section) {
+        case HistoryDetailSectionFirst:
+            title = self.historyItem.name;
+            break;
+        default:
+            break;
+    }
+    
+    return title;
 }
 
 /*

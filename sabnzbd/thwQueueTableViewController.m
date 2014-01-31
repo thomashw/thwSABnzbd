@@ -18,6 +18,7 @@
 @implementation thwQueueTableViewController
 
 NSString *const QUEUE_API_MODE = @"queue";
+NSInteger MAX_NUM_QUEUE_ITEMS = 50;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +32,7 @@ NSString *const QUEUE_API_MODE = @"queue";
 {
     [super viewDidLoad];
     [self setTitle:@"Queue"];
-    [self retrieveDataWithApiMode:QUEUE_API_MODE];
+    [self retrieveDataWithApiMode:QUEUE_API_MODE andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
 }
 
 - (void)didReceiveMemoryWarning

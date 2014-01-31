@@ -13,7 +13,7 @@
 @property (nonatomic, retain) NSDictionary *jsonDictionary;
 @property (nonatomic, retain) NSArray *items;
 
-- (void)retrieveDataWithApiMode:(NSString *)apiMode;
+- (void)retrieveDataWithApiMode:(NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems;
 - (void)setTitle:(NSString *)title;
 
 @end

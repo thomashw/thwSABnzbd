@@ -88,9 +88,9 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
 
 #pragma mark - NSURLConnectionDelegate
 
-- (void)retrieveDataWithApiMode:(NSString *)apiMode
+- (void)retrieveDataWithApiMode:(NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=2&mode=%@", SABNZBD_IP, SABNZBD_PORT, SABNZBD_API_KEY, apiMode];
+    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@", SABNZBD_IP, SABNZBD_PORT, SABNZBD_API_KEY, numItems, apiMode];
     NSLog(@"%@", urlString);
     
     NSURL *sabnzbdUrl = [NSURL URLWithString:urlString];
