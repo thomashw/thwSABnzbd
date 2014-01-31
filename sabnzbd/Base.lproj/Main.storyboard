@@ -23,11 +23,11 @@
             </objects>
             <point key="canvasLocation" x="110" y="138"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - History-->
         <scene sceneID="208-4U-hPx">
             <objects>
                 <navigationController definesPresentationContext="YES" id="XDh-e2-sFS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Wya-t9-cQW"/>
+                    <tabBarItem key="tabBarItem" title="History" id="Wya-t9-cQW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bC3-mA-h8g">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.039215686274509803" green="0.39215686274509803" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
