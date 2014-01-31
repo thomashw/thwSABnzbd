@@ -10,7 +10,8 @@
 
 @interface thwHistoryItem : NSObject
 
-@property (nonatomic, retain) NSString *nzbName;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *size;
 
 + (NSArray*) getItemsFromHistoryDictionary:(NSDictionary*)dictionary;
 

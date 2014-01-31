@@ -8,6 +8,7 @@
 
 #import "thwHistoryTableViewController.h"
 #import "thwHistoryItem.h"
+#import "thwHistoryDetailTableViewController.h"
 
 @interface thwHistoryTableViewController ()
 
@@ -57,6 +58,18 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"HistoryDetailSegue"])
+    {
+        NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
+        thwHistoryItem *selectedItem = [self.historyItems objectAtIndex:selectedRowIndexPath.row];
+        
+        thwHistoryDetailTableViewController *viewController = [segue destinationViewController];
+        [viewController setHistoryItem:selectedItem];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -82,7 +95,7 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     thwHistoryItem *item = [self.historyItems objectAtIndex:indexPath.row];
-    [cell.textLabel setText:item.nzbName];
+    [cell.textLabel setText:item.name];
     
     return cell;
 }

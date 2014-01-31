@@ -18,7 +18,8 @@
 
     for (NSDictionary *nzbDownload in slotsArray) {
         thwHistoryItem *newItem = [[thwHistoryItem alloc] init];
-        [newItem setNzbName:[nzbDownload objectForKey:@"nzb_name"]];
+        [newItem setName:[nzbDownload objectForKey:@"name"]];
+        [newItem setSize:[nzbDownload objectForKey:@"size"]];
         [array addObject:newItem];
     }
 
@@ -27,7 +28,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"nzbName: %@", self.nzbName];
+    return [NSString stringWithFormat:@"name: %@, size: %@", self.name, self.size];
 }
 
 @end
