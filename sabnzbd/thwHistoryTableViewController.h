@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 thomashw. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "thwTableViewController.h"
 
-@interface thwHistoryTableViewController : UITableViewController
+@interface thwHistoryTableViewController : thwTableViewController
 
 @end

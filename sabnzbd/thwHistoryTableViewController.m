@@ -12,24 +12,18 @@
 
 @interface thwHistoryTableViewController ()
 
-@property (nonatomic, retain) NSMutableData *data;
 @property (nonatomic, retain) NSArray *historyItems;
-
-- (void)getHistory;
 
 @end
 
 @implementation thwHistoryTableViewController
 
-NSString *const SABNZBD_IP = @"192.168.1.88";
-NSString *const SABNZBD_PORT = @"55000";
-NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
+NSString *const API_MODE = @"history";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        [self setHistoryItems:NULL];
     }
     return self;
 }
@@ -37,7 +31,7 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self getHistory];
+    [self retrieveDataWithApiMode:API_MODE];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [titleLabel setTextColor:[UIColor whiteColor]];
@@ -100,31 +94,10 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     return cell;
 }
 
-
-#pragma mark - NSURLConnectionDelegate
-
-- (void)getHistory
-{
-    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=2&mode=history", SABNZBD_IP, SABNZBD_PORT, SABNZBD_API_KEY];
-    NSURL *sabnzbdUrl = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:sabnzbdUrl];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [self setData:[NSMutableData data]];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.data appendData:data];
-}
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:[self data] options:0 error:nil];
-    [self setHistoryItems:[thwHistoryItem getItemsFromHistoryDictionary:jsonDictionary]];
+    [super connectionDidFinishLoading:connection];
+    [self setHistoryItems:[thwHistoryItem getItemsFromHistoryDictionary:self.jsonDictionary]];
     [self.tableView reloadData];
 }
 
