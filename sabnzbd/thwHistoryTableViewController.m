@@ -38,6 +38,12 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     [super viewDidLoad];
     [self getHistory];
     
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    [titleLabel setText:@"Download History"];
+    [self.navigationItem setTitleView:titleLabel];
+    [titleLabel sizeToFit];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

@@ -40,7 +40,7 @@
             </objects>
             <point key="canvasLocation" x="630" y="138"/>
         </scene>
-        <!--Thw History Table View Controller - Download History-->
+        <!--Thw History Table View Controller-->
         <scene sceneID="eEM-mQ-oh9">
             <objects>
                 <tableViewController id="6ne-Yb-xYk" customClass="thwHistoryTableViewController" sceneMemberID="viewController">
@@ -72,7 +72,7 @@
                             <outlet property="delegate" destination="6ne-Yb-xYk" id="mTQ-pK-lYu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Download History" id="pKx-6E-KOW"/>
+                    <navigationItem key="navigationItem" id="pKx-6E-KOW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACW-Hx-4QQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
