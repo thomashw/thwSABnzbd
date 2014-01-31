@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *size;
+@property (nonatomic, retain) NSString *status;
 
 + (NSArray*) getItemsFromHistoryDictionary:(NSDictionary*)dictionary;
 

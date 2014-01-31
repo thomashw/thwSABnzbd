@@ -20,15 +20,11 @@
         thwHistoryItem *newItem = [[thwHistoryItem alloc] init];
         [newItem setName:[nzbDownload objectForKey:@"name"]];
         [newItem setSize:[nzbDownload objectForKey:@"size"]];
+        [newItem setStatus:[nzbDownload objectForKey:@"status"]];
         [array addObject:newItem];
     }
 
     return array;
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"name: %@, size: %@", self.name, self.size];
 }
 
 @end

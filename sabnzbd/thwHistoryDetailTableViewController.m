@@ -12,6 +12,7 @@
 typedef enum HistoryDetailRow {
     HistoryDetailRowName = 0,
     HistoryDetailRowSize,
+    HistoryDetailRowStatus,
     HistoryDetailRowCount
 } HistoryDetailRow;
 
@@ -73,6 +74,9 @@ typedef enum HistoryDetailRow {
             [cell.textLabel setText:@"Size"];
             [cell.detailTextLabel setText:self.historyItem.size];
             break;
+        case HistoryDetailRowStatus:
+            [cell.textLabel setText:@"Status"];
+            [cell.detailTextLabel setText:self.historyItem.status];
         default:
             break;
     }
