@@ -16,6 +16,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="J8V-lb-Rlw" kind="relationship" relationship="viewControllers" id="caD-Y6-33r"/>
                         <segue destination="XDh-e2-sFS" kind="relationship" relationship="viewControllers" id="UCj-Y0-Zj0"/>
                     </connections>
                 </tabBarController>
@@ -80,6 +81,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACW-Hx-4QQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1109" y="138"/>
+        </scene>
+        <!--Thw Queue Table View Controller - Root View Controller-->
+        <scene sceneID="V13-zW-Jo9">
+            <objects>
+                <tableViewController id="crb-vf-Cp1" customClass="thwQueueTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PhO-rO-3Yx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="YYH-Wv-dfI" style="IBUITableViewCellStyleDefault" id="TSk-3J-Zol">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TSk-3J-Zol" id="iLX-PI-Bts">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YYH-Wv-dfI">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="CZ2-VI-noU"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7m-XH-UzU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1173" y="854"/>
+        </scene>
+        <!--Navigation Controller - Queue-->
+        <scene sceneID="skW-be-Rph">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="J8V-lb-Rlw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Queue" id="O5O-7l-eZo"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gyk-OW-K5t">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.039215686270000001" green="0.3921568627" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="crb-vf-Cp1" kind="relationship" relationship="rootViewController" id="MUG-Or-RnN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wqm-cz-Mo7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="639" y="854"/>
         </scene>
         <!--Thw History Detail Table View Controller-->
         <scene sceneID="ErZ-Jj-WXq">

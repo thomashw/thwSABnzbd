@@ -12,13 +12,11 @@
 
 @interface thwHistoryTableViewController ()
 
-@property (nonatomic, retain) NSArray *historyItems;
-
 @end
 
 @implementation thwHistoryTableViewController
 
-NSString *const API_MODE = @"history";
+NSString *const HISTORY_API_MODE = @"history";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,19 +29,8 @@ NSString *const API_MODE = @"history";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self retrieveDataWithApiMode:API_MODE];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    [titleLabel setText:@"Download History"];
-    [self.navigationItem setTitleView:titleLabel];
-    [titleLabel sizeToFit];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setTitle:@"Download History"];
+    [self retrieveDataWithApiMode:HISTORY_API_MODE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +44,7 @@ NSString *const API_MODE = @"history";
     if([segue.identifier isEqualToString:@"HistoryDetailSegue"])
     {
         NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
-        thwHistoryItem *selectedItem = [self.historyItems objectAtIndex:selectedRowIndexPath.row];
+        thwHistoryItem *selectedItem = [self.items objectAtIndex:selectedRowIndexPath.row];
         
         thwHistoryDetailTableViewController *viewController = [segue destinationViewController];
         [viewController setHistoryItem:selectedItem];
@@ -66,38 +53,10 @@ NSString *const API_MODE = @"history";
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(self.historyItems == NULL)
-    {
-        return 0;
-    }
-    else
-    {
-        return [self.historyItems count];
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    thwHistoryItem *item = [self.historyItems objectAtIndex:indexPath.row];
-    [cell.textLabel setText:item.name];
-    
-    return cell;
-}
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [super connectionDidFinishLoading:connection];
-    [self setHistoryItems:[thwHistoryItem getItemsFromHistoryDictionary:self.jsonDictionary]];
+    [self setItems:[thwHistoryItem getItemsFromHistoryDictionary:self.jsonDictionary]];
     [self.tableView reloadData];
 }
 

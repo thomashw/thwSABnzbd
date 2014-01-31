@@ -47,18 +47,32 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setTitle:(NSString *)title
+{
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    [titleLabel setText:title];
+    [self.navigationItem setTitleView:titleLabel];
+    [titleLabel sizeToFit];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 0;
+    if(self.items == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return [self.items count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +80,8 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    thwHistoryItem *item = [self.items objectAtIndex:indexPath.row];
+    [cell.textLabel setText:item.name];
     
     return cell;
 }
