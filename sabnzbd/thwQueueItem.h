@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface thwQueueItem : NSObject
+#import "thwSabnzbdItem.h"
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *size;
-@property (nonatomic, retain) NSString *status;
+@interface thwQueueItem : thwSabnzbdItem
 
 + (NSArray*) getItemsFromQueueDictionary:(NSDictionary*)dictionary;
 

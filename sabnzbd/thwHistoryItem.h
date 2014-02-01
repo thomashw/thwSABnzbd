@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface thwHistoryItem : NSObject
+#import "thwSabnzbdItem.h"
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *size;
-@property (nonatomic, retain) NSString *status;
+@interface thwHistoryItem : thwSabnzbdItem
 
 + (NSArray*) getItemsFromHistoryDictionary:(NSDictionary*)dictionary;
 
