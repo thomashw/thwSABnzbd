@@ -11,6 +11,12 @@
 #import "thwQueueTableViewCell.h"
 #import "thwDownloadStatus.h"
 
+typedef enum TableViewSection {
+    TableViewSectionQueue = 0,
+    TableViewSectionHistory,
+    TableViewSectionCount
+} TableViewSection;
+
 @interface thwTableViewController ()
 
 @property (nonatomic, retain) NSMutableData *data;
@@ -19,9 +25,12 @@
 
 @implementation thwTableViewController
 
-NSString *const SABNZBD_IP = @"192.168.1.88";
-NSString *const SABNZBD_PORT = @"55000";
-NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
+const NSString *SABNZBD_IP = @"192.168.1.88";
+const NSString *SABNZBD_PORT = @"55000";
+const NSString *SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
+
+const NSString *QUEUE_TITLE = @"Queue";
+const NSString *HISTORY_TITLE = @"History";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -62,19 +71,24 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return TableViewSectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(self.items == NULL)
-    {
-        return 0;
+    NSInteger rows = 0;
+    
+    switch (section) {
+        case TableViewSectionQueue:
+            if(self.items != NULL)
+            {
+                rows = [self.items count];
+            }
+        default:
+            break;
     }
-    else
-    {
-        return [self.items count];
-    }
+    
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,6 +105,24 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     [cell.statusImage setImage:[item.downloadStatus image]];
     
     return cell;
+}
+
+- (const NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    const NSString *title;
+    
+    switch (section) {
+        case TableViewSectionQueue:
+            title = QUEUE_TITLE;
+            break;
+        case TableViewSectionHistory:
+            title = HISTORY_TITLE;
+            break;
+        default:
+            break;
+    }
+
+    return title;
 }
 
 #pragma mark - NSURLConnectionDelegate
