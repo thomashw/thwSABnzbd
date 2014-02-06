@@ -8,6 +8,7 @@
 
 #import "thwTableViewController.h"
 #import "thwHistoryItem.h"
+#import "thwQueueTableViewCell.h"
 
 @interface thwTableViewController ()
 
@@ -78,10 +79,12 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    thwQueueTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     thwHistoryItem *item = [self.items objectAtIndex:indexPath.row];
-    [cell.textLabel setText:item.name];
+    [cell.title setText:item.name];
+    [cell.size setText:item.size];
+    [cell.status setText:item.status];
     
     return cell;
 }
