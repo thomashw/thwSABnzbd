@@ -7,6 +7,7 @@
 //
 
 #import "thwHistoryItem.h"
+#import "thwDownloadStatus.h"
 
 @implementation thwHistoryItem
 
@@ -15,15 +16,16 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     NSDictionary *historyDictionary = [dictionary objectForKey:@"history"];
     NSArray *slotsArray = [historyDictionary objectForKey:@"slots"];
-
-    for (NSDictionary *nzbDownload in slotsArray) {
-        thwHistoryItem *newItem = [[thwHistoryItem alloc] init];
-        [newItem setName:[nzbDownload objectForKey:@"name"]];
-        [newItem setSize:[nzbDownload objectForKey:@"size"]];
-        [newItem setStatus:[nzbDownload objectForKey:@"status"]];
+    
+    /*for (NSDictionary *nzbDownload in slotsArray) {
+        NSString *name = [nzbDownload objectForKey:@"name"];
+        NSString *size = [nzbDownload objectForKey:@"size"];
+        NSString *status = [nzbDownload objectForKey:@"status"];
+        thwDownloadStatus *downloadStatus = [[thwDownloadStatus alloc] initWithStatus:status];
+        thwHistoryItem *newItem = [[thwHistoryItem alloc] initWithName:name size:size timeLeft:<#(NSString *)#> downloadStatus:<#(thwDownloadStatus *)#>];
         [array addObject:newItem];
-    }
-
+    }*/
+    
     return array;
 }
 

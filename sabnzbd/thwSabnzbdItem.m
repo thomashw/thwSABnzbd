@@ -10,4 +10,18 @@
 
 @implementation thwSabnzbdItem
 
+- (id)initWithName:(NSString *)name size:(NSString *)size timeLeft:(NSString *)timeLeft downloadStatus:(thwDownloadStatus *)downloadStatus
+{
+    self = [super init];
+    if(self)
+    {
+        _name = name;
+        _size = size;
+        _timeLeft = timeLeft;
+        _downloadStatus = downloadStatus;
+    }
+    
+    return self;
+}
+
 @end

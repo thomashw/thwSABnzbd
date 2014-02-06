@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class thwDownloadStatus;
+
 @interface thwSabnzbdItem : NSObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *size;
-@property (nonatomic, retain) NSString *status;
 @property (nonatomic, retain) NSString *timeLeft;
+@property (nonatomic, retain) thwDownloadStatus *downloadStatus;
+
+- (id)initWithName:(NSString *)name
+              size:(NSString *)size
+          timeLeft:(NSString *)timeLeft
+    downloadStatus:(thwDownloadStatus *)downloadStatus;
 
 @end

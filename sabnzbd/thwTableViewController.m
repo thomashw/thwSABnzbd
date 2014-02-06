@@ -7,8 +7,9 @@
 //
 
 #import "thwTableViewController.h"
-#import "thwHistoryItem.h"
+#import "thwQueueItem.h"
 #import "thwQueueTableViewCell.h"
+#import "thwDownloadStatus.h"
 
 @interface thwTableViewController ()
 
@@ -81,12 +82,13 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     static NSString *CellIdentifier = @"Cell";
     thwQueueTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    thwHistoryItem *item = [self.items objectAtIndex:indexPath.row];
+    thwQueueItem *item = [self.items objectAtIndex:indexPath.row];
     [cell.title setText:item.name];
     [cell.size setText:item.size];
-    [cell.status setText:item.status];
+    [cell.status setText:[item.downloadStatus toString]];
     [cell.timeLeft setText:item.timeLeft];
-    [cell.statusImage setImage:[UIImage imageNamed:@"status_green.png"]];
+    
+    [cell.statusImage setImage:[item.downloadStatus image]];
     
     return cell;
 }

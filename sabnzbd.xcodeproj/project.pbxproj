@@ -17,6 +17,7 @@
 		E94CBD8F18A3221F00202DF5 /* thwQueueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8E18A3221F00202DF5 /* thwQueueTableViewCell.m */; };
 		E94CBD9218A3571600202DF5 /* status_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CBD9018A3571600202DF5 /* status_green.png */; };
 		E94CBD9318A3571600202DF5 /* status_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CBD9118A3571600202DF5 /* status_yellow.png */; };
+		E94CBD9A18A43C1500202DF5 /* thwDownloadStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD9918A43C1500202DF5 /* thwDownloadStatus.m */; };
 		E9D849E41892134000DDE5FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D849E31892134000DDE5FE /* Foundation.framework */; };
 		E9D849E61892134000DDE5FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D849E51892134000DDE5FE /* CoreGraphics.framework */; };
 		E9D849E81892134000DDE5FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D849E71892134000DDE5FE /* UIKit.framework */; };
@@ -63,6 +64,8 @@
 		E94CBD8E18A3221F00202DF5 /* thwQueueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwQueueTableViewCell.m; sourceTree = "<group>"; };
 		E94CBD9018A3571600202DF5 /* status_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_green.png; sourceTree = "<group>"; };
 		E94CBD9118A3571600202DF5 /* status_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_yellow.png; sourceTree = "<group>"; };
+		E94CBD9818A43C1500202DF5 /* thwDownloadStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwDownloadStatus.h; sourceTree = "<group>"; };
+		E94CBD9918A43C1500202DF5 /* thwDownloadStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwDownloadStatus.m; sourceTree = "<group>"; };
 		E9D849E01892134000DDE5FE /* sabnzbd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sabnzbd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D849E31892134000DDE5FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9D849E51892134000DDE5FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 				E9096C6D189215DD00E9FB6B /* history */,
 				E94CBD8A189CB6B600202DF5 /* thwSabnzbdItem.h */,
 				E94CBD8B189CB6B600202DF5 /* thwSabnzbdItem.m */,
+				E94CBD9818A43C1500202DF5 /* thwDownloadStatus.h */,
+				E94CBD9918A43C1500202DF5 /* thwDownloadStatus.m */,
 			);
 			name = sabnzbd;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				E94CBD8F18A3221F00202DF5 /* thwQueueTableViewCell.m in Sources */,
 				E94CBD86189B522A00202DF5 /* thwQueueTableViewController.m in Sources */,
 				E9D849FA1892134100DDE5FE /* thwFirstViewController.m in Sources */,
+				E94CBD9A18A43C1500202DF5 /* thwDownloadStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

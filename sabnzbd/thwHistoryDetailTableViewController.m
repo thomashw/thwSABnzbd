@@ -76,7 +76,7 @@ typedef enum HistoryDetailRow {
             break;
         case HistoryDetailRowStatus:
             [cell.textLabel setText:@"Status"];
-            [cell.detailTextLabel setText:self.historyItem.status];
+//            [cell.detailTextLabel setText:self.historyItem.downloadStatus];
         default:
             break;
     }
