@@ -7,8 +7,8 @@
 //
 
 #import "thwTableViewController.h"
-#import "thwQueueItem.h"
-#import "thwQueueTableViewCell.h"
+#import "thwSabnzbdItem.h"
+#import "thwTableViewCell.h"
 #import "thwDownloadStatus.h"
 
 typedef enum TableViewSection {
@@ -25,12 +25,16 @@ typedef enum TableViewSection {
 
 @implementation thwTableViewController
 
-const NSString *SABNZBD_IP = @"192.168.1.88";
-const NSString *SABNZBD_PORT = @"55000";
-const NSString *SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
+NSString *const SABNZBD_IP = @"192.168.1.88";
+NSString *const SABNZBD_PORT = @"55000";
+NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
 
-const NSString *QUEUE_TITLE = @"Queue";
-const NSString *HISTORY_TITLE = @"History";
+NSString *const QUEUE_TITLE = @"Queue";
+NSString *const HISTORY_TITLE = @"History";
+
+NSString *const QUEUE_API_MODE = @"queue";
+NSString *const TABLE_TITLE = @"Downloads";
+NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,6 +49,9 @@ const NSString *HISTORY_TITLE = @"History";
 {
     [super viewDidLoad];
 
+    [self setTitle:TABLE_TITLE];
+    [self retrieveDataWithApiMode:QUEUE_API_MODE andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -94,9 +101,9 @@ const NSString *HISTORY_TITLE = @"History";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    thwQueueTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    thwTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    thwQueueItem *item = [self.items objectAtIndex:indexPath.row];
+    thwSabnzbdItem *item = [self.items objectAtIndex:indexPath.row];
     [cell.title setText:item.name];
     [cell.size setText:item.size];
     [cell.status setText:[item.downloadStatus toString]];
@@ -127,7 +134,7 @@ const NSString *HISTORY_TITLE = @"History";
 
 #pragma mark - NSURLConnectionDelegate
 
-- (void)retrieveDataWithApiMode:(NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems
+- (void)retrieveDataWithApiMode:(const NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems
 {
     NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@", SABNZBD_IP, SABNZBD_PORT, SABNZBD_API_KEY, numItems, apiMode];
     NSLog(@"%@", urlString);
@@ -150,6 +157,8 @@ const NSString *HISTORY_TITLE = @"History";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [self setJsonDictionary:[NSJSONSerialization JSONObjectWithData:[self data] options:0 error:nil]];
+    [self setItems:[thwSabnzbdItem getItemsFromQueueDictionary:self.jsonDictionary]];
+    [self.tableView reloadData];
 }
 
 /*

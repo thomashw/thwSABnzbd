@@ -11,10 +11,8 @@
 		E94CBD7B1899DB8A00202DF5 /* thwHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD7A1899DB8A00202DF5 /* thwHistoryItem.m */; };
 		E94CBD7E189B451700202DF5 /* thwHistoryDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD7D189B451700202DF5 /* thwHistoryDetailTableViewController.m */; };
 		E94CBD81189B4E1900202DF5 /* thwTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD80189B4E1900202DF5 /* thwTableViewController.m */; };
-		E94CBD86189B522A00202DF5 /* thwQueueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD85189B522A00202DF5 /* thwQueueTableViewController.m */; };
-		E94CBD89189B53E300202DF5 /* thwQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD88189B53E300202DF5 /* thwQueueItem.m */; };
 		E94CBD8C189CB6B600202DF5 /* thwSabnzbdItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8B189CB6B600202DF5 /* thwSabnzbdItem.m */; };
-		E94CBD8F18A3221F00202DF5 /* thwQueueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8E18A3221F00202DF5 /* thwQueueTableViewCell.m */; };
+		E94CBD8F18A3221F00202DF5 /* thwTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8E18A3221F00202DF5 /* thwTableViewCell.m */; };
 		E94CBD9218A3571600202DF5 /* status_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CBD9018A3571600202DF5 /* status_green.png */; };
 		E94CBD9318A3571600202DF5 /* status_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CBD9118A3571600202DF5 /* status_yellow.png */; };
 		E94CBD9A18A43C1500202DF5 /* thwDownloadStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD9918A43C1500202DF5 /* thwDownloadStatus.m */; };
@@ -54,14 +52,10 @@
 		E94CBD7D189B451700202DF5 /* thwHistoryDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwHistoryDetailTableViewController.m; sourceTree = "<group>"; };
 		E94CBD7F189B4E1900202DF5 /* thwTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwTableViewController.h; sourceTree = "<group>"; };
 		E94CBD80189B4E1900202DF5 /* thwTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwTableViewController.m; sourceTree = "<group>"; };
-		E94CBD84189B522A00202DF5 /* thwQueueTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwQueueTableViewController.h; sourceTree = "<group>"; };
-		E94CBD85189B522A00202DF5 /* thwQueueTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwQueueTableViewController.m; sourceTree = "<group>"; };
-		E94CBD87189B53E300202DF5 /* thwQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwQueueItem.h; sourceTree = "<group>"; };
-		E94CBD88189B53E300202DF5 /* thwQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwQueueItem.m; sourceTree = "<group>"; };
 		E94CBD8A189CB6B600202DF5 /* thwSabnzbdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwSabnzbdItem.h; sourceTree = "<group>"; };
 		E94CBD8B189CB6B600202DF5 /* thwSabnzbdItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwSabnzbdItem.m; sourceTree = "<group>"; };
-		E94CBD8D18A3221F00202DF5 /* thwQueueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwQueueTableViewCell.h; sourceTree = "<group>"; };
-		E94CBD8E18A3221F00202DF5 /* thwQueueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwQueueTableViewCell.m; sourceTree = "<group>"; };
+		E94CBD8D18A3221F00202DF5 /* thwTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwTableViewCell.h; sourceTree = "<group>"; };
+		E94CBD8E18A3221F00202DF5 /* thwTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwTableViewCell.m; sourceTree = "<group>"; };
 		E94CBD9018A3571600202DF5 /* status_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_green.png; sourceTree = "<group>"; };
 		E94CBD9118A3571600202DF5 /* status_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_yellow.png; sourceTree = "<group>"; };
 		E94CBD9818A43C1500202DF5 /* thwDownloadStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwDownloadStatus.h; sourceTree = "<group>"; };
@@ -116,7 +110,8 @@
 		E9096C6C189215D600E9FB6B /* sabnzbd */ = {
 			isa = PBXGroup;
 			children = (
-				E94CBD83189B521300202DF5 /* queue */,
+				E94CBD8D18A3221F00202DF5 /* thwTableViewCell.h */,
+				E94CBD8E18A3221F00202DF5 /* thwTableViewCell.m */,
 				E94CBD7F189B4E1900202DF5 /* thwTableViewController.h */,
 				E94CBD80189B4E1900202DF5 /* thwTableViewController.m */,
 				E9096C6D189215DD00E9FB6B /* history */,
@@ -139,19 +134,6 @@
 				E94CBD7D189B451700202DF5 /* thwHistoryDetailTableViewController.m */,
 			);
 			name = history;
-			sourceTree = "<group>";
-		};
-		E94CBD83189B521300202DF5 /* queue */ = {
-			isa = PBXGroup;
-			children = (
-				E94CBD84189B522A00202DF5 /* thwQueueTableViewController.h */,
-				E94CBD85189B522A00202DF5 /* thwQueueTableViewController.m */,
-				E94CBD87189B53E300202DF5 /* thwQueueItem.h */,
-				E94CBD88189B53E300202DF5 /* thwQueueItem.m */,
-				E94CBD8D18A3221F00202DF5 /* thwQueueTableViewCell.h */,
-				E94CBD8E18A3221F00202DF5 /* thwQueueTableViewCell.m */,
-			);
-			name = queue;
 			sourceTree = "<group>";
 		};
 		E94CBD9418A3572000202DF5 /* Resources */ = {
@@ -345,12 +327,10 @@
 				E94CBD8C189CB6B600202DF5 /* thwSabnzbdItem.m in Sources */,
 				E9D849F01892134000DDE5FE /* main.m in Sources */,
 				E9D849FD1892134100DDE5FE /* thwSecondViewController.m in Sources */,
-				E94CBD89189B53E300202DF5 /* thwQueueItem.m in Sources */,
 				E9096C731893418900E9FB6B /* thwHistoryTableViewController.m in Sources */,
 				E94CBD81189B4E1900202DF5 /* thwTableViewController.m in Sources */,
 				E94CBD7B1899DB8A00202DF5 /* thwHistoryItem.m in Sources */,
-				E94CBD8F18A3221F00202DF5 /* thwQueueTableViewCell.m in Sources */,
-				E94CBD86189B522A00202DF5 /* thwQueueTableViewController.m in Sources */,
+				E94CBD8F18A3221F00202DF5 /* thwTableViewCell.m in Sources */,
 				E9D849FA1892134100DDE5FE /* thwFirstViewController.m in Sources */,
 				E94CBD9A18A43C1500202DF5 /* thwDownloadStatus.m in Sources */,
 			);

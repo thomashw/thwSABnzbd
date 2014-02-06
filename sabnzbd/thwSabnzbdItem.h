@@ -22,4 +22,6 @@
           timeLeft:(NSString *)timeLeft
     downloadStatus:(thwDownloadStatus *)downloadStatus;
 
++ (NSArray*) getItemsFromQueueDictionary:(NSDictionary*)dictionary;
+
 @end

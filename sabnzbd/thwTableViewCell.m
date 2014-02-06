@@ -1,14 +1,14 @@
 //
-//  thwQueueTableViewCell.m
+//  thwTableViewCell.m
 //  sabnzbd
 //
 //  Created by Thomas Hewton-Waters on 2/5/2014.
 //  Copyright (c) 2014 thomashw. All rights reserved.
 //
 
-#import "thwQueueTableViewCell.h"
+#import "thwTableViewCell.h"
 
-@implementation thwQueueTableViewCell
+@implementation thwTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

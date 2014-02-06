@@ -1,5 +1,5 @@
 //
-//  thwQueueTableViewCell.h
+//  thwTableViewCell.h
 //  sabnzbd
 //
 //  Created by Thomas Hewton-Waters on 2/5/2014.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface thwQueueTableViewCell : UITableViewCell
+@interface thwTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *title;
 @property (nonatomic, weak) IBOutlet UILabel *status;
