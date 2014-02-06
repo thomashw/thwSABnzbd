@@ -14,5 +14,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *status;
 @property (nonatomic, weak) IBOutlet UILabel *timeLeft;
 @property (nonatomic, weak) IBOutlet UILabel *size;
+@property (nonatomic, weak) IBOutlet UIImageView *statusImage;
 
 @end

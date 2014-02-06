@@ -41,14 +41,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg8-Iw-daD">
-                                            <rect key="frame" x="20" y="2" width="205" height="21"/>
+                                            <rect key="frame" x="27" y="2" width="205" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1n-Oi-ySD">
-                                            <rect key="frame" x="20" y="19" width="44" height="21"/>
+                                            <rect key="frame" x="27" y="19" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,16 +69,21 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pdy-UM-aW4">
-                                            <rect key="frame" x="20" y="38" width="280" height="2"/>
+                                            <rect key="frame" x="27" y="38" width="273" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="trackTintColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="status_yellow.png" translatesAutoresizingMaskIntoConstraints="NO" id="mOO-EI-hCh">
+                                            <rect key="frame" x="7" y="16" width="12" height="12"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="size" destination="J4G-nY-e7e" id="p2x-PD-XSd"/>
                                     <outlet property="status" destination="d1n-Oi-ySD" id="IUX-Pm-pzg"/>
+                                    <outlet property="statusImage" destination="mOO-EI-hCh" id="gh7-HA-lxN"/>
                                     <outlet property="timeLeft" destination="L9n-5f-nWK" id="Ms1-Sj-zfg"/>
                                     <outlet property="title" destination="Xg8-Iw-daD" id="bJA-3y-SOB"/>
                                 </connections>
@@ -110,6 +115,9 @@
             <point key="canvasLocation" x="617" y="138"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="status_yellow.png" width="12" height="12"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
