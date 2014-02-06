@@ -13,5 +13,6 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *size;
 @property (nonatomic, retain) NSString *status;
+@property (nonatomic, retain) NSString *timeLeft;
 
 @end

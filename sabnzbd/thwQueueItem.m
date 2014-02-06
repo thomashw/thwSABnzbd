@@ -21,6 +21,7 @@
         [newItem setName:[nzbDownload objectForKey:@"filename"]];
         [newItem setSize:[nzbDownload objectForKey:@"size"]];
         [newItem setStatus:[nzbDownload objectForKey:@"status"]];
+        [newItem setTimeLeft:[nzbDownload objectForKey:@"timeleft"]];
         [array addObject:newItem];
     }
     

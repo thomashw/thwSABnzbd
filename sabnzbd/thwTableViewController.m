@@ -85,6 +85,7 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
     [cell.title setText:item.name];
     [cell.size setText:item.size];
     [cell.status setText:item.status];
+    [cell.timeLeft setText:item.timeLeft];
     
     return cell;
 }
