@@ -17,12 +17,6 @@ typedef enum TableViewSection {
     TableViewSectionCount
 } TableViewSection;
 
-@interface thwTableViewController ()
-
-@property (nonatomic, retain) NSMutableData *data;
-
-@end
-
 @implementation thwTableViewController
 
 NSString *const SABNZBD_IP = @"192.168.1.88";
@@ -141,24 +135,15 @@ NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
     
     NSURL *sabnzbdUrl = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:sabnzbdUrl];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [self setData:[NSMutableData data]];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.data appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [self setJsonDictionary:[NSJSONSerialization JSONObjectWithData:[self data] options:0 error:nil]];
-    [self setItems:[thwSabnzbdItem getItemsFromQueueDictionary:self.jsonDictionary]];
-    [self.tableView reloadData];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if(data != nil)
+         {
+             NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+             [self setItems:[thwSabnzbdItem getItemsFromQueueDictionary:jsonDictionary]];
+             [self.tableView reloadData];
+         }
+     }];
 }
 
 /*

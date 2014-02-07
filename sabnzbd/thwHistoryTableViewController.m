@@ -57,7 +57,7 @@ NSInteger MAX_NUM_HISTORY_ITEMS = 50;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [super connectionDidFinishLoading:connection];
-    [self setItems:[thwHistoryItem getItemsFromHistoryDictionary:self.jsonDictionary]];
+    //[self setItems:[thwHistoryItem getItemsFromHistoryDictionary:self.jsonDictionary]];
     [self.tableView reloadData];
 }
 

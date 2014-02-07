@@ -10,7 +10,6 @@
 
 @interface thwTableViewController : UITableViewController <NSURLConnectionDataDelegate>
 
-@property (nonatomic, retain) NSDictionary *jsonDictionary;
 @property (nonatomic, retain) NSArray *items;
 
 - (void)retrieveDataWithApiMode:(NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems;
