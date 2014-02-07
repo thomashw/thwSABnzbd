@@ -17,6 +17,18 @@ typedef enum TableViewSection {
     TableViewSectionCount
 } TableViewSection;
 
+typedef enum ApiMode {
+    ApiModeQueue = 0,
+    ApiModeHistory
+} ApiMode;
+
+@interface thwTableViewController ()
+
+@property (nonatomic, retain) NSArray *queueItems;
+@property (nonatomic, retain) NSArray *historyItems;
+
+@end
+
 @implementation thwTableViewController
 
 NSString *const SABNZBD_IP = @"192.168.1.88";
@@ -26,9 +38,11 @@ NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
 NSString *const QUEUE_TITLE = @"Queue";
 NSString *const HISTORY_TITLE = @"History";
 
-NSString *const QUEUE_API_MODE = @"queue";
 NSString *const TABLE_TITLE = @"Downloads";
 NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
+
+NSString *const API_MODE_QUEUE = @"queue";
+NSString *const API_MODE_HISTORY = @"history";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,13 +56,14 @@ NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self setTitle:TABLE_TITLE];
-    [self retrieveDataWithApiMode:QUEUE_API_MODE andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+    [self retrieveDataWithApiMode:ApiModeQueue andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+    [self retrieveDataWithApiMode:ApiModeHistory andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -81,10 +96,17 @@ NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
     
     switch (section) {
         case TableViewSectionQueue:
-            if(self.items != NULL)
+            if(self.queueItems != nil)
             {
-                rows = [self.items count];
+                rows = [self.queueItems count];
             }
+            break;
+        case TableViewSectionHistory:
+            if(self.historyItems != nil)
+            {
+                rows = [self.historyItems count];
+            }
+            break;
         default:
             break;
     }
@@ -97,13 +119,27 @@ NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
     static NSString *CellIdentifier = @"Cell";
     thwTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    thwSabnzbdItem *item = [self.items objectAtIndex:indexPath.row];
-    [cell.title setText:item.name];
-    [cell.size setText:item.size];
-    [cell.status setText:[item.downloadStatus toString]];
-    [cell.timeLeft setText:item.timeLeft];
+    thwSabnzbdItem *item = nil;
     
-    [cell.statusImage setImage:[item.downloadStatus image]];
+    switch (indexPath.section) {
+        case TableViewSectionQueue:
+                item = [self.queueItems objectAtIndex:indexPath.row];
+            break;
+        case TableViewSectionHistory:
+            item = [self.historyItems objectAtIndex:indexPath.row];
+            break;
+        default:
+            break;
+    }
+    
+    if(item != nil)
+    {
+        [cell.title setText:item.name];
+        [cell.size setText:item.size];
+        [cell.status setText:[item.downloadStatus toString]];
+        [cell.timeLeft setText:item.timeLeft];
+        [cell.statusImage setImage:[item.downloadStatus image]];
+    }
     
     return cell;
 }
@@ -122,79 +158,120 @@ NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
         default:
             break;
     }
-
+    
     return title;
 }
 
-#pragma mark - NSURLConnectionDelegate
+#pragma mark - NSURLConnection
 
-- (void)retrieveDataWithApiMode:(const NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems
+- (void)retrieveDataWithApiMode:(ApiMode)apiMode andMaximumNumberOfItems:(NSInteger)numItems
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@", SABNZBD_IP, SABNZBD_PORT, SABNZBD_API_KEY, numItems, apiMode];
-    NSLog(@"%@", urlString);
+    NSString *apiModeString = [self getApiModeStringFromApiMode:apiMode];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@",
+                           SABNZBD_IP,
+                           SABNZBD_PORT,
+                           SABNZBD_API_KEY,
+                           numItems,
+                           apiModeString];
     
     NSURL *sabnzbdUrl = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:sabnzbdUrl];
+    [self retrieveDataWithApiMode:apiMode andURL:sabnzbdUrl];
+}
+
+- (NSString *)getApiModeStringFromApiMode:(ApiMode)apiMode
+{
+    NSString *apiModeString = nil;
+    
+    switch (apiMode) {
+        case ApiModeHistory:
+            apiModeString = API_MODE_HISTORY;
+            break;
+        case ApiModeQueue:
+            apiModeString = API_MODE_QUEUE;
+            break;
+        default:
+            NSLog(@"ERROR: Incorrect API mode specified");
+            break;
+    }
+    
+    return apiModeString;
+}
+
+- (void)retrieveDataWithApiMode:(ApiMode)apiMode andURL:(NSURL *)url
+{
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
          if(data != nil)
          {
              NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-             [self setItems:[thwSabnzbdItem getItemsFromQueueDictionary:jsonDictionary]];
+             
+             switch (apiMode) {
+                 case ApiModeQueue:
+                     [self setQueueItems:[thwSabnzbdItem getItemsFromQueueDictionary:jsonDictionary]];
+                     break;
+                 case ApiModeHistory:
+                     [self setHistoryItems:[thwSabnzbdItem getItemsFromHistoryDictionary:jsonDictionary]];
+                     break;
+                 default:
+                     break;
+             }
+             
              [self.tableView reloadData];
          }
      }];
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
+ #pragma mark - Navigation
+ 
+ // In a story board-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ 
  */
 
 @end

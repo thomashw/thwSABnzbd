@@ -23,5 +23,6 @@
     downloadStatus:(thwDownloadStatus *)downloadStatus;
 
 + (NSArray*) getItemsFromQueueDictionary:(NSDictionary*)dictionary;
++ (NSArray*) getItemsFromHistoryDictionary:(NSDictionary*)dictionary;
 
 @end

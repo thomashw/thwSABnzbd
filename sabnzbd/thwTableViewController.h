@@ -10,9 +10,4 @@
 
 @interface thwTableViewController : UITableViewController <NSURLConnectionDataDelegate>
 
-@property (nonatomic, retain) NSArray *items;
-
-- (void)retrieveDataWithApiMode:(NSString *)apiMode andMaximumNumberOfItems:(NSInteger)numItems;
-- (void)setTitle:(NSString *)title;
-
 @end
