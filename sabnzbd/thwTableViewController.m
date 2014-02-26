@@ -123,10 +123,12 @@ NSString *const API_MODE_HISTORY = @"history";
     
     switch (indexPath.section) {
         case TableViewSectionQueue:
-                item = [self.queueItems objectAtIndex:indexPath.row];
+            item = [self.queueItems objectAtIndex:indexPath.row];
+            [cell.progressView setAlpha:1.0];
             break;
         case TableViewSectionHistory:
             item = [self.historyItems objectAtIndex:indexPath.row];
+            [cell.progressView setAlpha:0.0];
             break;
         default:
             break;
@@ -139,6 +141,7 @@ NSString *const API_MODE_HISTORY = @"history";
         [cell.status setText:[item.downloadStatus toString]];
         [cell.timeLeft setText:item.timeLeft];
         [cell.statusImage setImage:[item.downloadStatus image]];
+        [cell.progressView setProgress:([item.downloadPercentage floatValue]/100.0)];
     }
     
     return cell;

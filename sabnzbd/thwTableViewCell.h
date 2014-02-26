@@ -15,5 +15,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *timeLeft;
 @property (nonatomic, weak) IBOutlet UILabel *size;
 @property (nonatomic, weak) IBOutlet UIImageView *statusImage;
+@property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 
 @end

@@ -19,8 +19,9 @@ NSString *const SIZE = @"size";
 NSString *const SLOTS = @"slots";
 NSString *const STATUS = @"status";
 NSString *const TIME_LEFT = @"timeleft";
+NSString *const PERCENTAGE = @"percentage";
 
-- (id)initWithName:(NSString *)name size:(NSString *)size timeLeft:(NSString *)timeLeft downloadStatus:(thwDownloadStatus *)downloadStatus
+- (id)initWithName:(NSString *)name size:(NSString *)size timeLeft:(NSString *)timeLeft downloadPercentage:(NSString *)downloadPercentage downloadStatus:(thwDownloadStatus *)downloadStatus
 {
     self = [super init];
     if(self)
@@ -28,6 +29,7 @@ NSString *const TIME_LEFT = @"timeleft";
         _name = name;
         _size = size;
         _timeLeft = timeLeft;
+        _downloadPercentage = downloadPercentage;
         _downloadStatus = downloadStatus;
     }
     
@@ -45,8 +47,9 @@ NSString *const TIME_LEFT = @"timeleft";
         NSString *size = [nzbDownload objectForKey:SIZE];
         NSString *status = [nzbDownload objectForKey:STATUS];
         NSString *timeLeft = [nzbDownload objectForKey:TIME_LEFT];
+        NSString *downloadPercentage = [nzbDownload objectForKey:PERCENTAGE];
         thwDownloadStatus *downloadStatus = [[thwDownloadStatus alloc] initWithString:status];
-        thwSabnzbdItem *newItem = [[thwSabnzbdItem alloc] initWithName:name size:size timeLeft:timeLeft downloadStatus:downloadStatus];
+        thwSabnzbdItem *newItem = [[thwSabnzbdItem alloc] initWithName:name size:size timeLeft:timeLeft downloadPercentage:downloadPercentage downloadStatus:downloadStatus];
         [array addObject:newItem];
     }
     
@@ -64,8 +67,9 @@ NSString *const TIME_LEFT = @"timeleft";
         NSString *size = [nzbDownload objectForKey:SIZE];
         NSString *status = [nzbDownload objectForKey:STATUS];
         NSString *timeLeft = @"";
+        NSString *downloadPercentage = @"";
         thwDownloadStatus *downloadStatus = [[thwDownloadStatus alloc] initWithString:status];
-        thwSabnzbdItem *newItem = [[thwSabnzbdItem alloc] initWithName:name size:size timeLeft:timeLeft downloadStatus:downloadStatus];
+        thwSabnzbdItem *newItem = [[thwSabnzbdItem alloc] initWithName:name size:size timeLeft:timeLeft downloadPercentage:downloadPercentage downloadStatus:downloadStatus];
         [array addObject:newItem];
     }
     

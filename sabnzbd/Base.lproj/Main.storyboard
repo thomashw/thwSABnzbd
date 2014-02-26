@@ -81,6 +81,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outlet property="progressView" destination="pdy-UM-aW4" id="rZE-4V-Sen"/>
                                     <outlet property="size" destination="J4G-nY-e7e" id="p2x-PD-XSd"/>
                                     <outlet property="status" destination="d1n-Oi-ySD" id="IUX-Pm-pzg"/>
                                     <outlet property="statusImage" destination="mOO-EI-hCh" id="gh7-HA-lxN"/>
