@@ -13,7 +13,8 @@ typedef enum DownloadStatus {
     DownloadStatusDownloading,
     DownloadStatusCompleted,
     DownloadStatusFailed,
-    DownloadStatusQueued
+    DownloadStatusQueued,
+    DownloadStatusGrabbing
 } DownloadStatus;
 
 @interface thwDownloadStatus : NSObject

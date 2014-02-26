@@ -40,27 +40,31 @@
     return downloadStatus;
 }
 
-- (void)setStatus:(NSString *)aStatus
+- (void)setStatus:(NSString *)status
 {
-    if([aStatus isEqualToString:@"Completed"])
+    if([status isEqualToString:@"Completed"])
     {
         downloadStatus = DownloadStatusCompleted;
     }
-    else if([aStatus isEqualToString:@"Downloading"])
+    else if([status isEqualToString:@"Downloading"])
     {
         downloadStatus = DownloadStatusDownloading;
     }
-    else if([aStatus isEqualToString:@"Paused"])
+    else if([status isEqualToString:@"Paused"])
     {
         downloadStatus = DownloadStatusPaused;
     }
-    else if([aStatus isEqualToString:@"Failed"])
+    else if([status isEqualToString:@"Failed"])
     {
         downloadStatus = DownloadStatusFailed;
     }
-    else if([aStatus isEqualToString:@"Queued"])
+    else if([status isEqualToString:@"Queued"])
     {
         downloadStatus = DownloadStatusQueued;
+    }
+    else if([status isEqualToString:@"Grabbing"])
+    {
+        downloadStatus = DownloadStatusGrabbing;
     }
 }
 
