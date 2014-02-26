@@ -7,6 +7,7 @@
 //
 
 #import "thwTableViewController.h"
+#import "thwQueueItem.h"
 #import "thwSabnzbdItem.h"
 #import "thwTableViewCell.h"
 #import "thwDownloadStatus.h"
@@ -119,29 +120,34 @@ NSString *const API_MODE_HISTORY = @"history";
     static NSString *CellIdentifier = @"Cell";
     thwTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    thwSabnzbdItem *item = nil;
+    thwSabnzbdItem *historyItem = nil;
+    thwQueueItem *queueItem = nil;
     
     switch (indexPath.section) {
         case TableViewSectionQueue:
-            item = [self.queueItems objectAtIndex:indexPath.row];
+            queueItem = [self.queueItems objectAtIndex:indexPath.row];
             [cell.progressView setAlpha:1.0];
+            
+            [cell.title setText:queueItem.name];
+            [cell.size setText:queueItem.size];
+            [cell.status setText:[queueItem.downloadStatus toString]];
+            [cell.timeLeft setText:queueItem.timeLeft];
+            [cell.statusImage setImage:[queueItem.downloadStatus image]];
+            [cell.progressView setProgress:([queueItem.downloadPercentage floatValue]/100.0)];
             break;
+            
         case TableViewSectionHistory:
-            item = [self.historyItems objectAtIndex:indexPath.row];
+            historyItem = [self.historyItems objectAtIndex:indexPath.row];
             [cell.progressView setAlpha:0.0];
+            [cell.timeLeft setText:@""];
+            
+            [cell.title setText:historyItem.name];
+            [cell.size setText:historyItem.size];
+            [cell.status setText:[historyItem.downloadStatus toString]];
+            [cell.statusImage setImage:[historyItem.downloadStatus image]];
             break;
         default:
             break;
-    }
-    
-    if(item != nil)
-    {
-        [cell.title setText:item.name];
-        [cell.size setText:item.size];
-        [cell.status setText:[item.downloadStatus toString]];
-        [cell.timeLeft setText:item.timeLeft];
-        [cell.statusImage setImage:[item.downloadStatus image]];
-        [cell.progressView setProgress:([item.downloadPercentage floatValue]/100.0)];
     }
     
     return cell;
@@ -212,7 +218,7 @@ NSString *const API_MODE_HISTORY = @"history";
              
              switch (apiMode) {
                  case ApiModeQueue:
-                     [self setQueueItems:[thwSabnzbdItem getItemsFromQueueDictionary:jsonDictionary]];
+                     [self setQueueItems:[thwQueueItem getItemsFromQueueDictionary:jsonDictionary]];
                      break;
                  case ApiModeHistory:
                      [self setHistoryItems:[thwSabnzbdItem getItemsFromHistoryDictionary:jsonDictionary]];

@@ -8,23 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const SIZE = @"size";
+static NSString *const SLOTS = @"slots";
+static NSString *const STATUS = @"status";
+
 @class thwDownloadStatus;
 
 @interface thwSabnzbdItem : NSObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *size;
-@property (nonatomic, retain) NSString *timeLeft;
-@property (nonatomic, retain) NSString *downloadPercentage;
 @property (nonatomic, retain) thwDownloadStatus *downloadStatus;
 
 - (id)initWithName:(NSString *)name
               size:(NSString *)size
-          timeLeft:(NSString *)timeLeft
-downloadPercentage:(NSString *)downloadPercentage
     downloadStatus:(thwDownloadStatus *)downloadStatus;
 
-+ (NSArray*) getItemsFromQueueDictionary:(NSDictionary*)dictionary;
 + (NSArray*) getItemsFromHistoryDictionary:(NSDictionary*)dictionary;
 
 @end

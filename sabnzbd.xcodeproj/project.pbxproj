@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E905D36418BD974300DD7D2A /* thwQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E905D36318BD974300DD7D2A /* thwQueueItem.m */; };
 		E94CBD81189B4E1900202DF5 /* thwTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD80189B4E1900202DF5 /* thwTableViewController.m */; };
 		E94CBD8C189CB6B600202DF5 /* thwSabnzbdItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8B189CB6B600202DF5 /* thwSabnzbdItem.m */; };
 		E94CBD8F18A3221F00202DF5 /* thwTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8E18A3221F00202DF5 /* thwTableViewCell.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E905D36218BD974300DD7D2A /* thwQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwQueueItem.h; sourceTree = "<group>"; };
+		E905D36318BD974300DD7D2A /* thwQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwQueueItem.m; sourceTree = "<group>"; };
 		E94CBD7F189B4E1900202DF5 /* thwTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwTableViewController.h; sourceTree = "<group>"; };
 		E94CBD80189B4E1900202DF5 /* thwTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwTableViewController.m; sourceTree = "<group>"; };
 		E94CBD8A189CB6B600202DF5 /* thwSabnzbdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwSabnzbdItem.h; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				E9D849F51892134000DDE5FE /* Main.storyboard */,
 				E9D849FE1892134100DDE5FE /* Images.xcassets */,
 				E9D849EA1892134000DDE5FE /* Supporting Files */,
+				E905D36218BD974300DD7D2A /* thwQueueItem.h */,
+				E905D36318BD974300DD7D2A /* thwQueueItem.m */,
 			);
 			path = sabnzbd;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				E94CBD8C189CB6B600202DF5 /* thwSabnzbdItem.m in Sources */,
 				E9D849F01892134000DDE5FE /* main.m in Sources */,
 				E94CBD81189B4E1900202DF5 /* thwTableViewController.m in Sources */,
+				E905D36418BD974300DD7D2A /* thwQueueItem.m in Sources */,
 				E94CBD8F18A3221F00202DF5 /* thwTableViewCell.m in Sources */,
 				E94CBD9A18A43C1500202DF5 /* thwDownloadStatus.m in Sources */,
 			);
