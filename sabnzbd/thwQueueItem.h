@@ -15,6 +15,7 @@
 
 - (id)initWithName:(NSString *)name
               size:(NSString *)size
+             nzoId:(NSString *)nzoId
           timeLeft:(NSString *)timeLeft
 downloadPercentage:(NSString *)downloadPercentage
     downloadStatus:(thwDownloadStatus *)downloadStatus;

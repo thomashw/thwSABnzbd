@@ -16,6 +16,7 @@ NSString *const NAME = @"name";
 
 - (id)initWithName:(NSString *)name
               size:(NSString *)size
+             nzoId:(NSString *)nzoId
     downloadStatus:(thwDownloadStatus *)downloadStatus
 {
     self = [super init];
@@ -23,6 +24,7 @@ NSString *const NAME = @"name";
     {
         _name = name;
         _size = size;
+        _nzoId = nzoId;
         _downloadStatus = downloadStatus;
     }
     
@@ -39,9 +41,11 @@ NSString *const NAME = @"name";
         NSString *name = [nzbDownload objectForKey:NAME];
         NSString *size = [nzbDownload objectForKey:SIZE];
         NSString *status = [nzbDownload objectForKey:STATUS];
+        NSString *nzoId = [nzbDownload objectForKey:NZO_ID];
         thwDownloadStatus *downloadStatus = [[thwDownloadStatus alloc] initWithString:status];
         thwSabnzbdItem *newItem = [[thwSabnzbdItem alloc] initWithName:name
                                                                   size:size
+                                                                 nzoId:nzoId
                                                         downloadStatus:downloadStatus];
         [array addObject:newItem];
     }

@@ -18,11 +18,12 @@ NSString *const TIME_LEFT = @"timeleft";
 
 - (id)initWithName:(NSString *)name
               size:(NSString *)size
+             nzoId:(NSString *)nzoId
           timeLeft:(NSString *)timeLeft
 downloadPercentage:(NSString *)downloadPercentage
     downloadStatus:(thwDownloadStatus *)downloadStatus
 {
-    self = [super initWithName:name size:size downloadStatus:downloadStatus];
+    self = [super initWithName:name size:size nzoId:nzoId downloadStatus:downloadStatus];
     if(self)
     {
         _downloadPercentage = downloadPercentage;
@@ -41,12 +42,14 @@ downloadPercentage:(NSString *)downloadPercentage
     for (NSDictionary *nzbDownload in slotsArray) {
         NSString *name = [nzbDownload objectForKey:FILE_NAME];
         NSString *size = [nzbDownload objectForKey:SIZE];
+        NSString *nzoId = [nzbDownload objectForKey:NZO_ID];
         NSString *status = [nzbDownload objectForKey:STATUS];
         NSString *timeLeft = [nzbDownload objectForKey:TIME_LEFT];
         NSString *downloadPercentage = [nzbDownload objectForKey:PERCENTAGE];
         thwDownloadStatus *downloadStatus = [[thwDownloadStatus alloc] initWithString:status];
         thwQueueItem *newItem = [[thwQueueItem alloc] initWithName:name
                                                               size:size
+                                                             nzoId:nzoId
                                                           timeLeft:timeLeft
                                                 downloadPercentage:downloadPercentage
                                                     downloadStatus:downloadStatus];

@@ -11,6 +11,7 @@
 static NSString *const SIZE = @"size";
 static NSString *const SLOTS = @"slots";
 static NSString *const STATUS = @"status";
+static NSString *const NZO_ID = @"nzo_id";
 
 @class thwDownloadStatus;
 
@@ -18,10 +19,12 @@ static NSString *const STATUS = @"status";
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *size;
+@property (nonatomic, retain) NSString *nzoId;
 @property (nonatomic, retain) thwDownloadStatus *downloadStatus;
 
 - (id)initWithName:(NSString *)name
               size:(NSString *)size
+             nzoId:(NSString *)nzoId
     downloadStatus:(thwDownloadStatus *)downloadStatus;
 
 + (NSArray*) getItemsFromHistoryDictionary:(NSDictionary*)dictionary;

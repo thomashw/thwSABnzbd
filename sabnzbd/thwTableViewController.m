@@ -25,8 +25,8 @@ typedef enum ApiMode {
 
 @interface thwTableViewController ()
 
-@property (nonatomic, retain) NSArray *queueItems;
-@property (nonatomic, retain) NSArray *historyItems;
+@property (nonatomic, retain) NSMutableArray *queueItems;
+@property (nonatomic, retain) NSMutableArray *historyItems;
 
 @end
 
@@ -171,7 +171,53 @@ NSString *const API_MODE_HISTORY = @"history";
     return title;
 }
 
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    thwSabnzbdItem *item = nil;
+    
+    switch (indexPath.section) {
+        case TableViewSectionQueue:
+            item = [self.queueItems objectAtIndex:indexPath.row];
+            [self deleteItemWithApiMode:ApiModeQueue andNzoId:item.nzoId];
+            [self.queueItems removeObjectAtIndex:indexPath.row];
+            break;
+        case TableViewSectionHistory:
+            item = [self.historyItems objectAtIndex:indexPath.row];
+            [self deleteItemWithApiMode:ApiModeHistory andNzoId:item.nzoId];
+            [self.historyItems removeObjectAtIndex:indexPath.row];
+            break;
+        default:
+            break;
+    }
+    
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - NSURLConnection
+
+- (void)deleteItemWithApiMode:(ApiMode)apiMode
+                     andNzoId:(NSString *)nzoId
+{
+    NSString *apiModeString = [self getApiModeStringFromApiMode:apiMode];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&mode=%@&name=delete&value=%@",
+                           SABNZBD_IP,
+                           SABNZBD_PORT,
+                           SABNZBD_API_KEY,
+                           apiModeString,
+                           nzoId];
+    
+    NSURL *sabnzbdUrl = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:sabnzbdUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+     }];
+}
 
 - (void)retrieveDataWithApiMode:(ApiMode)apiMode andMaximumNumberOfItems:(NSInteger)numItems
 {
@@ -210,7 +256,9 @@ NSString *const API_MODE_HISTORY = @"history";
 - (void)retrieveDataWithApiMode:(ApiMode)apiMode andURL:(NSURL *)url
 {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
          if(data != nil)
          {
@@ -218,10 +266,14 @@ NSString *const API_MODE_HISTORY = @"history";
              
              switch (apiMode) {
                  case ApiModeQueue:
-                     [self setQueueItems:[thwQueueItem getItemsFromQueueDictionary:jsonDictionary]];
+                     [self setQueueItems:[NSMutableArray
+                                          arrayWithArray:[thwQueueItem
+                                                          getItemsFromQueueDictionary:jsonDictionary]]];
                      break;
                  case ApiModeHistory:
-                     [self setHistoryItems:[thwSabnzbdItem getItemsFromHistoryDictionary:jsonDictionary]];
+                     [self setHistoryItems:[NSMutableArray
+                                            arrayWithArray:[thwSabnzbdItem
+                                                            getItemsFromHistoryDictionary:jsonDictionary]]];
                      break;
                  default:
                      break;
