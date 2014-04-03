@@ -73,11 +73,19 @@
     UIImage *image = NULL;
     
     switch(downloadStatus) {
+        case DownloadStatusGrabbing:
         case DownloadStatusPaused:
+        case DownloadStatusQueued:
             image = [UIImage imageNamed:@"status_yellow.png"];
             break;
         case DownloadStatusDownloading:
             image = [UIImage imageNamed:@"status_green.png"];
+            break;
+        case DownloadStatusFailed:
+            image = [UIImage imageNamed:@"status_failed.png"];
+            break;
+        case DownloadStatusCompleted:
+            image = [UIImage imageNamed:@"status_complete.png"];
             break;
         default:
             image = NULL;

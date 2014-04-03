@@ -32,12 +32,9 @@ typedef enum ApiMode {
 
 @implementation thwTableViewController
 
-NSString *const SABNZBD_IP = @"192.168.1.88";
+NSString *const SABNZBD_IP = @"192.168.1.67";
 NSString *const SABNZBD_PORT = @"55000";
-NSString *const SABNZBD_API_KEY=@"23ed657114d8d56692a18e613c5b0221";
-
-NSString *const QUEUE_TITLE = @"Queue";
-NSString *const HISTORY_TITLE = @"History";
+NSString *const SABNZBD_API_KEY = @"97832ab5af3e381a42b0260fb545430b";
 
 NSString *const TABLE_TITLE = @"Downloads";
 NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
@@ -151,24 +148,6 @@ NSString *const API_MODE_HISTORY = @"history";
     }
     
     return cell;
-}
-
-- (const NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    const NSString *title;
-    
-    switch (section) {
-        case TableViewSectionQueue:
-            title = QUEUE_TITLE;
-            break;
-        case TableViewSectionHistory:
-            title = HISTORY_TITLE;
-            break;
-        default:
-            break;
-    }
-    
-    return title;
 }
 
 - (void)tableView:(UITableView *)tableView

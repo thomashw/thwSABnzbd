@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A5ED7292-D524-4E3C-B1C5-F055A14F905F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>sabnzbd</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BC58B0BA-71C8-440E-A3B5-274E4309F324</key>
+		<string>ssh://bitbucket.org/thomashw/sabnzbd.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>sabnzbd.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BC58B0BA-71C8-440E-A3B5-274E4309F324</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://bitbucket.org/thomashw/sabnzbd.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BC58B0BA-71C8-440E-A3B5-274E4309F324</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BC58B0BA-71C8-440E-A3B5-274E4309F324</string>
+			<key>IDESourceControlWCCName</key>
+			<string>sabnzbd</string>
+		</dict>
+	</array>
+</dict>
+</plist>
