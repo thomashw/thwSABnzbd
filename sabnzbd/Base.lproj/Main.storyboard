@@ -104,7 +104,7 @@
     </scenes>
     <resources>
         <image name="status_yellow.png" width="10" height="10"/>
-        <image name="tableview_bg.png" width="320" height="44"/>
+        <image name="tableview_bg.png" width="320" height="43"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
