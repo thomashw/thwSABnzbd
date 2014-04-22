@@ -75,7 +75,7 @@ enum TextFieldTag {
 
 - (void)setText:(NSString *)text forTextField:(UITextField *)textField
 {
-    if(text != NULL && text.length > 0)
+    if(text != nil && text.length > 0)
     {
         [textField setText:text];
     }

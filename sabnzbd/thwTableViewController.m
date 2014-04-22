@@ -7,10 +7,15 @@
 //
 
 #import "thwTableViewController.h"
+#import "constants.h"
 #import "thwQueueItem.h"
 #import "thwSabnzbdItem.h"
 #import "thwTableViewCell.h"
 #import "thwDownloadStatus.h"
+
+#define URL_TEST_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@"
+#define URL_RETRIEVE_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@"
+#define URL_DELETE_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@&mode=%@&name=delete&value=%@"
 
 typedef enum TableViewSection {
     TableViewSectionQueue = 0,
@@ -32,9 +37,11 @@ typedef enum ApiMode {
 
 @implementation thwTableViewController
 
+/*
 NSString *const SABNZBD_IP = @"192.168.1.67";
 NSString *const SABNZBD_PORT = @"55000";
 NSString *const SABNZBD_API_KEY = @"97832ab5af3e381a42b0260fb545430b";
+ */
 
 NSString *const TABLE_TITLE = @"Downloads";
 NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
@@ -54,10 +61,14 @@ NSString *const API_MODE_HISTORY = @"history";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self setTitle:TABLE_TITLE];
-    [self retrieveDataWithApiMode:ApiModeQueue andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
-    [self retrieveDataWithApiMode:ApiModeHistory andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+    
+    if([self validateSettings])
+    {
+        [self retrieveDataWithApiMode:ApiModeQueue andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+        [self retrieveDataWithApiMode:ApiModeHistory andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -76,6 +87,48 @@ NSString *const API_MODE_HISTORY = @"history";
     [titleLabel setText:title];
     [self.navigationItem setTitleView:titleLabel];
     [titleLabel sizeToFit];
+}
+
+- (BOOL)validateSettings
+{
+    // Retrieve the saved settings
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *ipAddress = [prefs objectForKey:USER_DEFAULTS_IP_ADDRESS_KEY];
+    NSString *port = [prefs objectForKey:USER_DEFAULTS_PORT_KEY];
+    NSString *apiKey = [prefs objectForKey:USER_DEFAULTS_SAB_API_KEY];
+    
+    NSLog(@"Loaded IP address: %@", ipAddress);
+    NSLog(@"Loaded port: %@", port);
+    NSLog(@"Loaded API key: %@", apiKey);
+    
+    // Check to see if the saved settings exist
+    if(ipAddress == nil || port == nil || apiKey == nil ||
+       ipAddress.length <= 0 || port.length <= 0 || apiKey.length <= 0)
+    {
+        // Show an alert if they're not set
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:SETTINGS_ALERT_MESSAGE
+                                   delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+        return false;
+    }
+    
+    // Ensure the saved settings can generate a URL
+    NSString *urlString = [NSString stringWithFormat:URL_TEST_FORMAT, ipAddress, port, apiKey];
+    NSURL *url = [NSURL URLWithString:urlString];
+    if(url == nil || url.scheme == nil || url.host == nil || url.port == nil)
+    {
+        // Show an alert if the URL isn't successful
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:SETTINGS_ALERT_MESSAGE
+                                   delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+        return false;
+    }
+    
+    return true;
 }
 
 #pragma mark - Table view data source
@@ -179,10 +232,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *apiModeString = [self getApiModeStringFromApiMode:apiMode];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&mode=%@&name=delete&value=%@",
-                           SABNZBD_IP,
-                           SABNZBD_PORT,
-                           SABNZBD_API_KEY,
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *ipAddress = [prefs objectForKey:USER_DEFAULTS_IP_ADDRESS_KEY];
+    NSString *port = [prefs objectForKey:USER_DEFAULTS_PORT_KEY];
+    NSString *apiKey = [prefs objectForKey:USER_DEFAULTS_SAB_API_KEY];
+    
+    NSString *urlString = [NSString stringWithFormat:URL_DELETE_FORMAT,
+                           ipAddress,
+                           port,
+                           apiKey,
                            apiModeString,
                            nzoId];
     
@@ -199,10 +257,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *apiModeString = [self getApiModeStringFromApiMode:apiMode];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@",
-                           SABNZBD_IP,
-                           SABNZBD_PORT,
-                           SABNZBD_API_KEY,
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *ipAddress = [prefs objectForKey:USER_DEFAULTS_IP_ADDRESS_KEY];
+    NSString *port = [prefs objectForKey:USER_DEFAULTS_PORT_KEY];
+    NSString *apiKey = [prefs objectForKey:USER_DEFAULTS_SAB_API_KEY];
+    
+    NSString *urlString = [NSString stringWithFormat:URL_RETRIEVE_FORMAT,
+                           ipAddress,
+                           port,
+                           apiKey,
                            numItems,
                            apiModeString];
     
@@ -256,6 +319,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
              }
              
              [self.tableView reloadData];
+         }
+         else
+         {
+             // Show an alert if the request didn't return data
+             [[[UIAlertView alloc] initWithTitle:nil
+                                         message:CANNOT_REACH_SERVER_MESSAGE
+                                        delegate:self
+                               cancelButtonTitle:@"OK"
+                               otherButtonTitles:nil] show];
          }
      }];
 }

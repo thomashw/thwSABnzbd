@@ -13,4 +13,7 @@
 #define USER_DEFAULTS_PORT_KEY @"UserDefaultsPort"
 #define USER_DEFAULTS_SAB_API_KEY @"UserDefaultsSabApi"
 
+#define SETTINGS_ALERT_MESSAGE @"Please go into Settings and enter the correct SABnzbd IP address, port, and API key"
+#define CANNOT_REACH_SERVER_MESSAGE @"Couldn't reach SABnzbd server. Maybe check your settings?"
+
 #endif
