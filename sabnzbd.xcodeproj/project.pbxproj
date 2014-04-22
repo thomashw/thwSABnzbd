@@ -18,6 +18,7 @@
 		E902FAD018F2262400411EF2 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E902FACE18F2262400411EF2 /* settings@2x.png */; };
 		E902FAD318F22ACF00411EF2 /* tableview_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E902FAD118F22ACF00411EF2 /* tableview_bg.png */; };
 		E902FAD418F22ACF00411EF2 /* tableview_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E902FAD218F22ACF00411EF2 /* tableview_bg@2x.png */; };
+		E902FAD718F22D4300411EF2 /* thwSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E902FAD618F22D4300411EF2 /* thwSettingsTableViewController.m */; };
 		E905D36418BD974300DD7D2A /* thwQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E905D36318BD974300DD7D2A /* thwQueueItem.m */; };
 		E94CBD81189B4E1900202DF5 /* thwTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD80189B4E1900202DF5 /* thwTableViewController.m */; };
 		E94CBD8C189CB6B600202DF5 /* thwSabnzbdItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E94CBD8B189CB6B600202DF5 /* thwSabnzbdItem.m */; };
@@ -60,6 +61,9 @@
 		E902FACE18F2262400411EF2 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		E902FAD118F22ACF00411EF2 /* tableview_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableview_bg.png; sourceTree = "<group>"; };
 		E902FAD218F22ACF00411EF2 /* tableview_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_bg@2x.png"; sourceTree = "<group>"; };
+		E902FAD518F22D4300411EF2 /* thwSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwSettingsTableViewController.h; sourceTree = "<group>"; };
+		E902FAD618F22D4300411EF2 /* thwSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwSettingsTableViewController.m; sourceTree = "<group>"; };
+		E902FAD818F2339B00411EF2 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		E905D36218BD974300DD7D2A /* thwQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwQueueItem.h; sourceTree = "<group>"; };
 		E905D36318BD974300DD7D2A /* thwQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thwQueueItem.m; sourceTree = "<group>"; };
 		E94CBD7F189B4E1900202DF5 /* thwTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thwTableViewController.h; sourceTree = "<group>"; };
@@ -180,6 +184,9 @@
 				E9D849EA1892134000DDE5FE /* Supporting Files */,
 				E905D36218BD974300DD7D2A /* thwQueueItem.h */,
 				E905D36318BD974300DD7D2A /* thwQueueItem.m */,
+				E902FAD518F22D4300411EF2 /* thwSettingsTableViewController.h */,
+				E902FAD618F22D4300411EF2 /* thwSettingsTableViewController.m */,
+				E902FAD818F2339B00411EF2 /* constants.h */,
 			);
 			path = sabnzbd;
 			sourceTree = "<group>";
@@ -326,6 +333,7 @@
 				E94CBD8C189CB6B600202DF5 /* thwSabnzbdItem.m in Sources */,
 				E9D849F01892134000DDE5FE /* main.m in Sources */,
 				E94CBD81189B4E1900202DF5 /* thwTableViewController.m in Sources */,
+				E902FAD718F22D4300411EF2 /* thwSettingsTableViewController.m in Sources */,
 				E905D36418BD974300DD7D2A /* thwQueueItem.m in Sources */,
 				E94CBD8F18A3221F00202DF5 /* thwTableViewCell.m in Sources */,
 				E94CBD9A18A43C1500202DF5 /* thwDownloadStatus.m in Sources */,
