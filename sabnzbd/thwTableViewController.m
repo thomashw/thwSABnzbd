@@ -14,7 +14,7 @@
 #import "thwDownloadStatus.h"
 
 #define URL_TEST_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@"
-#define URL_RETRIEVE_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%ld&mode=%@"
+#define URL_RETRIEVE_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@&start=0&limit=%d&mode=%@"
 #define URL_DELETE_FORMAT @"http://%@:%@/sabnzbd/api?output=json&apikey=%@&mode=%@&name=delete&value=%@"
 
 typedef enum TableViewSection {
@@ -64,17 +64,18 @@ NSString *const API_MODE_HISTORY = @"history";
 
     [self setTitle:TABLE_TITLE];
     
+    // Add pull-to-refresh
+    refreshControl = [[UIRefreshControl alloc] init];
+    [self.tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if([self validateSettings])
-    {
-        [self retrieveDataWithApiMode:ApiModeQueue andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
-        [self retrieveDataWithApiMode:ApiModeHistory andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
-    }
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -333,6 +334,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
                                otherButtonTitles:nil] show];
          }
      }];
+}
+
+# pragma mark -
+#pragma mark refresh
+
+- (void)refreshData
+{
+    [refreshControl endRefreshing];
+    if([self validateSettings])
+    {
+        [self retrieveDataWithApiMode:ApiModeQueue andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+        [self retrieveDataWithApiMode:ApiModeHistory andMaximumNumberOfItems:MAX_NUM_QUEUE_ITEMS];
+    }
 }
 
 /*

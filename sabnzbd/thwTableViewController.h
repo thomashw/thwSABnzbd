@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface thwTableViewController : UITableViewController <NSURLConnectionDataDelegate>
+{
+    UIRefreshControl *refreshControl;
+}
 
 @end
