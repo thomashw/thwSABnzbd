@@ -37,11 +37,6 @@ typedef enum ApiMode {
 
 @implementation thwTableViewController
 
-/*
-NSString *const SABNZBD_IP = @"192.168.1.67";
-NSString *const SABNZBD_PORT = @"55000";
-NSString *const SABNZBD_API_KEY = @"97832ab5af3e381a42b0260fb545430b";
- */
 
 NSString *const TABLE_TITLE = @"Downloads";
 NSInteger const MAX_NUM_QUEUE_ITEMS = 50;
