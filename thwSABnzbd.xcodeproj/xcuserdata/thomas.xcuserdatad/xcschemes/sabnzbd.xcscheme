@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E9D849DF1892134000DDE5FE"
-               BuildableName = "sabnzbd.app"
-               BlueprintName = "sabnzbd"
-               ReferencedContainer = "container:sabnzbd.xcodeproj">
+               BuildableName = "thwSABnzbd.app"
+               BlueprintName = "thwSABnzbd"
+               ReferencedContainer = "container:thwSABnzbd.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E9D84A031892134100DDE5FE"
-               BuildableName = "sabnzbdTests.xctest"
-               BlueprintName = "sabnzbdTests"
-               ReferencedContainer = "container:sabnzbd.xcodeproj">
+               BuildableName = "thwSABnzbdTests.xctest"
+               BlueprintName = "thwSABnzbdTests"
+               ReferencedContainer = "container:thwSABnzbd.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9D849DF1892134000DDE5FE"
-            BuildableName = "sabnzbd.app"
-            BlueprintName = "sabnzbd"
-            ReferencedContainer = "container:sabnzbd.xcodeproj">
+            BuildableName = "thwSABnzbd.app"
+            BlueprintName = "thwSABnzbd"
+            ReferencedContainer = "container:thwSABnzbd.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9D849DF1892134000DDE5FE"
-            BuildableName = "sabnzbd.app"
-            BlueprintName = "sabnzbd"
-            ReferencedContainer = "container:sabnzbd.xcodeproj">
+            BuildableName = "thwSABnzbd.app"
+            BlueprintName = "thwSABnzbd"
+            ReferencedContainer = "container:thwSABnzbd.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9D849DF1892134000DDE5FE"
-            BuildableName = "sabnzbd.app"
-            BlueprintName = "sabnzbd"
-            ReferencedContainer = "container:sabnzbd.xcodeproj">
+            BuildableName = "thwSABnzbd.app"
+            BlueprintName = "thwSABnzbd"
+            ReferencedContainer = "container:thwSABnzbd.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
